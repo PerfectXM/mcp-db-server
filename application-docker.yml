@@ -1,0 +1,30 @@
+# Docker 环境配置 —— 无状态模式
+# 数据库连接由 MCP 客户端在每次调用时传入，服务端不持久化任何信息
+
+server:
+  port: 8088
+
+spring:
+  application:
+    name: mcp-db-server
+
+  ai:
+    mcp:
+      server:
+        name: mcp-db-server
+        version: 1.0.0
+        protocol: SSE
+        sse-endpoint: /sse
+        sse-message-endpoint: /message
+        annotation-scanner:
+          enabled: true
+        type: SYNC
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+logging:
+  level:
+    com.mcp.db: INFO
+    org.springframework.ai.mcp: INFO

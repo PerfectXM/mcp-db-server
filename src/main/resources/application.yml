@@ -1,0 +1,36 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: mcp-db-server
+
+  # MCP Server 配置
+  ai:
+    mcp:
+      server:
+        # MCP 服务名称
+        name: mcp-db-server
+        # MCP 协议版本
+        version: 1.0.0
+        # 传输协议类型: SSE (Server-Sent Events)
+        protocol: SSE
+        # SSE 端点路径（客户端连接地址）
+        sse-endpoint: /sse
+        sse-message-endpoint: /message
+        # 开启 @Tool 注解扫描
+        annotation-scanner:
+          enabled: true
+        # 是否同步模式
+        type: SYNC
+
+  # 禁用默认数据源自动配置（连接由客户端动态传入，不预先配置）
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+# 日志
+logging:
+  level:
+    com.mcp.db: DEBUG
+    org.springframework.ai.mcp: DEBUG

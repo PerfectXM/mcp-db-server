@@ -98,15 +98,6 @@ docker build -t mcp-db-server .
 docker run -d -p 8088:8088 --name mcp-db-server mcp-db-server
 ```
 
-也提供 `docker-compose.yml`，包含一个 MySQL 示例数据库，方便测试：
-
-```bash
-# 复制环境变量
-cp .env.example .env
-
-# 启动（含 MySQL）
-docker-compose up -d
-```
 
 ### JAR 包部署
 
